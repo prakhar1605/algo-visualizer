@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DSA Visualizer - Interactive Algorithm Learning</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="container">
+                <h1 class="header__title">DSA Visualizer</h1>
+                <p class="header__subtitle">Interactive Data Structures & Algorithms Learning Platform</p>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav">
+            <div class="container">
+                <div class="nav__tabs">
+                    <button class="nav__tab nav__tab--active" data-tab="sorting">Sorting</button>
+                    <button class="nav__tab" data-tab="search">Search</button>
+                    <button class="nav__tab" data-tab="graph">Graph</button>
+                    <button class="nav__tab" data-tab="tree">Tree</button>
+                    <button class="nav__tab" data-tab="structures">Data Structures</button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <!-- Sorting Section -->
+            <section class="section section--active" id="sorting">
+                <div class="container">
+                    <div class="section__header">
+                        <h2>Sorting Algorithms</h2>
+                        <div class="controls">
+                            <div class="control-group">
+                                <label class="form-label">Algorithm:</label>
+                                <select class="form-control" id="sortingSelect">
+                                    <option value="bubble">Bubble Sort</option>
+                                    <option value="selection">Selection Sort</option>
+                                    <option value="insertion">Insertion Sort</option>
+                                    <option value="merge">Merge Sort</option>
+                                    <option value="quick">Quick Sort</option>
+                                    <option value="heap">Heap Sort</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label class="form-label">Speed:</label>
+                                <input type="range" class="speed-slider" id="sortSpeed" min="1" max="10" value="5">
+                            </div>
+                            <div class="control-group">
+                                <label class="form-label">Size:</label>
+                                <input type="range" class="size-slider" id="arraySize" min="10" max="100" value="50">
+                            </div>
+                            <div class="control-buttons">
+                                <button class="btn btn--primary" id="generateArray">Generate New Array</button>
+                                <button class="btn btn--secondary" id="startSort">Start Sort</button>
+                                <button class="btn btn--outline" id="pauseSort">Pause</button>
+                                <button class="btn btn--outline" id="resetSort">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="algorithm-info" id="sortingInfo">
+                        <div class="info-card">
+                            <h3>Bubble Sort</h3>
+                            <p>Time: O(n²) | Space: O(1)</p>
+                            <p>Compares adjacent elements and swaps them if they're in wrong order</p>
+                        </div>
+                    </div>
+                    <div class="visualization-container">
+                        <div class="array-container" id="arrayContainer"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Search Section -->
+            <section class="section" id="search">
+                <div class="container">
+                    <div class="section__header">
+                        <h2>Search Algorithms</h2>
+                        <div class="controls">
+                            <div class="control-group">
+                                <label class="form-label">Algorithm:</label>
+                                <select class="form-control" id="searchSelect">
+                                    <option value="linear">Linear Search</option>
+                                    <option value="binary">Binary Search</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label class="form-label">Target Value:</label>
+                                <input type="number" class="form-control" id="targetValue" placeholder="Enter target" min="1" max="100">
+                            </div>
+                            <div class="control-buttons">
+                                <button class="btn btn--primary" id="generateSearchArray">Generate Array</button>
+                                <button class="btn btn--secondary" id="startSearch">Start Search</button>
+                                <button class="btn btn--outline" id="resetSearch">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="algorithm-info" id="searchInfo">
+                        <div class="info-card">
+                            <h3>Linear Search</h3>
+                            <p>Time: O(n) | Space: O(1)</p>
+                            <p>Searches each element sequentially until target is found</p>
+                        </div>
+                    </div>
+                    <div class="visualization-container">
+                        <div class="search-container" id="searchContainer"></div>
+                        <div class="search-result" id="searchResult"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Graph Section -->
+            <section class="section" id="graph">
+                <div class="container">
+                    <div class="section__header">
+                        <h2>Graph Algorithms</h2>
+                        <div class="controls">
+                            <div class="control-group">
+                                <label class="form-label">Algorithm:</label>
+                                <select class="form-control" id="graphSelect">
+                                    <option value="bfs">Breadth-First Search</option>
+                                    <option value="dfs">Depth-First Search</option>
+                                    <option value="dijkstra">Dijkstra's Algorithm</option>
+                                    <option value="astar">A* Algorithm</option>
+                                </select>
+                            </div>
+                            <div class="control-buttons">
+                                <button class="btn btn--primary" id="startPathfinding">Start Algorithm</button>
+                                <button class="btn btn--secondary" id="clearGrid">Clear Grid</button>
+                                <button class="btn btn--outline" id="generateMaze">Generate Maze</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="algorithm-info" id="graphInfo">
+                        <div class="info-card">
+                            <h3>Breadth-First Search</h3>
+                            <p>Time: O(V + E) | Space: O(V)</p>
+                            <p>Explores neighbors before going deeper, uses queue</p>
+                        </div>
+                    </div>
+                    <div class="visualization-container">
+                        <div class="grid-legend">
+                            <div class="legend-item"><div class="legend-color start"></div> Start</div>
+                            <div class="legend-item"><div class="legend-color end"></div> End</div>
+                            <div class="legend-item"><div class="legend-color wall"></div> Wall</div>
+                            <div class="legend-item"><div class="legend-color visited"></div> Visited</div>
+                            <div class="legend-item"><div class="legend-color path"></div> Path</div>
+                        </div>
+                        <div class="grid-container" id="gridContainer"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Tree Section -->
+            <section class="section" id="tree">
+                <div class="container">
+                    <div class="section__header">
+                        <h2>Tree Algorithms</h2>
+                        <div class="controls">
+                            <div class="control-group">
+                                <label class="form-label">Traversal:</label>
+                                <select class="form-control" id="treeSelect">
+                                    <option value="inorder">Inorder</option>
+                                    <option value="preorder">Preorder</option>
+                                    <option value="postorder">Postorder</option>
+                                    <option value="levelorder">Level Order</option>
+                                </select>
+                            </div>
+                            <div class="control-group">
+                                <label class="form-label">Add Node:</label>
+                                <input type="number" class="form-control" id="nodeValue" placeholder="Enter value" min="1" max="100">
+                                <button class="btn btn--sm btn--primary" id="addNode">Add</button>
+                            </div>
+                            <div class="control-buttons">
+                                <button class="btn btn--primary" id="startTraversal">Start Traversal</button>
+                                <button class="btn btn--secondary" id="generateTree">Generate Tree</button>
+                                <button class="btn btn--outline" id="clearTree">Clear Tree</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="algorithm-info" id="treeInfo">
+                        <div class="info-card">
+                            <h3>Inorder Traversal</h3>
+                            <p>Time: O(n) | Space: O(h)</p>
+                            <p>Left → Root → Right traversal</p>
+                        </div>
+                    </div>
+                    <div class="visualization-container">
+                        <div class="tree-container" id="treeContainer">
+                            <svg id="treeSvg" width="800" height="400"></svg>
+                        </div>
+                        <div class="traversal-sequence" id="traversalSequence"></div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Data Structures Section -->
+            <section class="section" id="structures">
+                <div class="container">
+                    <div class="section__header">
+                        <h2>Data Structures</h2>
+                    </div>
+                    
+                    <div class="structures-grid">
+                        <!-- Stack -->
+                        <div class="structure-card">
+                            <h3>Stack (LIFO)</h3>
+                            <div class="controls">
+                                <input type="number" class="form-control" id="stackValue" placeholder="Value" min="1" max="100">
+                                <button class="btn btn--primary" id="stackPush">Push</button>
+                                <button class="btn btn--secondary" id="stackPop">Pop</button>
+                                <button class="btn btn--outline" id="stackClear">Clear</button>
+                            </div>
+                            <div class="stack-container" id="stackContainer"></div>
+                        </div>
+
+                        <!-- Queue -->
+                        <div class="structure-card">
+                            <h3>Queue (FIFO)</h3>
+                            <div class="controls">
+                                <input type="number" class="form-control" id="queueValue" placeholder="Value" min="1" max="100">
+                                <button class="btn btn--primary" id="queueEnqueue">Enqueue</button>
+                                <button class="btn btn--secondary" id="queueDequeue">Dequeue</button>
+                                <button class="btn btn--outline" id="queueClear">Clear</button>
+                            </div>
+                            <div class="queue-container" id="queueContainer"></div>
+                        </div>
+
+                        <!-- Linked List -->
+                        <div class="structure-card">
+                            <h3>Linked List</h3>
+                            <div class="controls">
+                                <input type="number" class="form-control" id="listValue" placeholder="Value" min="1" max="100">
+                                <button class="btn btn--primary" id="listInsert">Insert</button>
+                                <button class="btn btn--secondary" id="listDelete">Delete</button>
+                                <button class="btn btn--outline" id="listClear">Clear</button>
+                            </div>
+                            <div class="list-container" id="listContainer"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
